@@ -118,14 +118,14 @@ public final class FastByIDMap<V> implements Serializable, Cloneable {
    */
   private int findForAdd(long key) {
     int theHashCode = (int) key & 0x7FFFFFFF; // make sure it's positive
-    long[] keys = this.keys;
-    int hashSize = keys.length;
+    long[] myKeys = this.keys;
+    int hashSize = myKeys.length;
     int jump = 1 + theHashCode % (hashSize - 2);
     int index = theHashCode % hashSize;
-    long currentKey = keys[index];
+    long currentKey = myKeys[index];
     while (currentKey != NULL && currentKey != REMOVED && key != currentKey) {
       index -= index < jump ? jump - hashSize : jump;
-      currentKey = keys[index];
+      currentKey = myKeys[index];
     }
     if (currentKey != REMOVED) {
       return index;
