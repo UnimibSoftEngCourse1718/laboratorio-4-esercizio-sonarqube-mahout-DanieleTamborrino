@@ -45,7 +45,7 @@ public final class FastByIDMap<V> implements Serializable, Cloneable {
   private static final long NULL = Long.MIN_VALUE;
   
   private long[] keys;
-  private V[] values;
+  private transient V[] values;
   private float loadFactor;
   private int numEntries;
   private int numSlotsUsed;
